@@ -1,0 +1,5 @@
+<view class="page"><view class="eyebrow">NICE TO MEET YOU</view><view class="title section"><view>以你的名字，</view><view>留下一条路。</view></view><view class="subtitle">头像和昵称会用来完善你的个人资料。</view><view class="notice" wx:if="{{isDemo}}">当前为本机体验身份，正式微信登录将在接入云开发后启用。</view>
+ <view wx:if="{{!user}}" class="card pad section"><view>无需手机号，使用微信身份创建账户。</view><button class="primary section" bindtap="login" loading="{{busy}}" disabled="{{busy}}">{{isDemo?'使用体验身份':'微信登录'}}</button></view>
+ <form wx:else bindsubmit="save"><view class="section"><button class="avatar-picker" open-type="chooseAvatar" bindchooseavatar="avatar"><image wx:if="{{avatarUrl}}" src="{{avatarUrl}}"/><view wx:else>＋</view></button><view class="muted small avatar-label">点击选择头像</view></view><view class="label section">昵称</view><view class="field"><input name="nickname" type="nickname" value="{{nickname}}" maxlength="30" placeholder="填写你的昵称"/></view><view class="notice">昵称会显示为路书作者。头像、昵称由你主动选择和填写。</view><button class="primary section" form-type="submit" loading="{{busy}}" disabled="{{busy}}">保存资料</button></form>
+ <view class="error" wx:if="{{error}}">{{error}}</view>
+</view>

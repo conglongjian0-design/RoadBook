@@ -1,0 +1,1 @@
+.map{width:100%;height:570rpx}.detail{background:#f7f8f2;border-radius:30rpx 30rpx 0 0;position:relative;margin-top:-22rpx;padding-top:32rpx}.detail .title{font-size:42rpx;margin-top:24rpx}.description{color:#637159;margin-top:20rpx;font-size:27rpx}.metrics{gap:0;justify-content:space-between}

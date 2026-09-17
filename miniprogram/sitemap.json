@@ -1,0 +1,1 @@
+{"desc":"只有公共广场允许索引；详情在云函数中校验权限","rules":[{"action":"allow","page":"pages/explore/index"},{"action":"disallow","page":"*"}]}

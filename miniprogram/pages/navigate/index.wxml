@@ -1,0 +1,8 @@
+<view class="page"><view class="eyebrow">READY TO GO</view><view class="title section"><view>把路线带上，</view><view>现在出发。</view></view><view class="subtitle">{{route.title}}</view><view class="notice">高德会重新规划路线，实际导航以高德结果为准。</view>
+ <view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="reload">重试</button></view>
+ <block wx:if="{{route}}"><view class="card pad section"><view class="tag">方式一 · 微信地图入口</view><view class="section-title section">打开地点，选择高德</view><view class="subtitle">先打开微信位置页，再从「路线」选择高德。可用地图 App 以你的微信版本和安装情况为准。</view><view class="label section">想先去哪里？</view><picker range="{{destinations}}" range-key="name" value="{{selected}}" bindchange="select"><view class="field picker">{{destinations[selected].name}}　⌄</view></picker><button class="primary" bindtap="openLocation">打开地图选择高德 ↗</button><view class="small muted section">此入口传递一个目的地。进入高德后，请确认并选择「骑行」等对应方式。</view></view>
+ <view class="card pad section"><view class="tag">方式二 · Safari 路线链接</view><view class="section-title section">带上起终点和出行方式</view><view class="subtitle">{{startName}} → {{endName}} · {{modeLabel}}</view><view class="step"><view class="step-num">1</view><view>复制下方的高德路线链接</view></view><view class="step"><view class="step-num">2</view><view>在 Safari 地址栏粘贴并打开</view></view><view class="step"><view class="step-num">3</view><view>按页面提示打开高德 App，确认路线</view></view><button class="secondary" bindtap="copyLink">复制高德路线链接</button><view class="small muted section">微信可能拦截直接唤起 App。此方式需要手动切换到 Safari。</view></view>
+ <view class="notice warning" wx:if="{{isLoop}}">这是一条环线，起终点相同。高德可能生成零距离路线，可先选择一个中途地点导航。</view>
+ <view class="notice warning" wx:if="{{route.isDemo}}">这是示例轨迹，仅用于验证入口。请确认目的地后再出发。</view>
+ </block>
+</view>

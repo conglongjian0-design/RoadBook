@@ -1,0 +1,16 @@
+{
+  "name": "roadbook-cloud",
+  "version": "0.1.0",
+  "main": "index.js",
+  "private": true,
+  "dependencies": {
+    "lodash.set": "file:./vendor/lodash-set",
+    "lodash.unset": "file:./vendor/lodash-unset",
+    "wx-server-sdk": "4.0.2"
+  },
+  "overrides": {
+    "axios": "0.33.0",
+    "lodash.set": "$lodash.set",
+    "lodash.unset": "$lodash.unset"
+  }
+}

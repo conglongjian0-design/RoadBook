@@ -1,0 +1,22 @@
+{
+  "name": "roadbook-miniprogram",
+  "version": "0.1.0",
+  "private": true,
+  "description": "路书 · 微信小程序与云开发后端",
+  "scripts": {
+    "build": "node scripts/build.js",
+    "test": "node --test tests/*.test.js",
+    "check": "npm run build && node scripts/check.js && node scripts/check-native.js && npm test",
+    "preview": "node scripts/preview-server.js"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "fast-xml-parser": "^5.11.1"
+  },
+  "devDependencies": {
+    "esbuild": "^0.28.2",
+    "prettier": "^3.9.6"
+  }
+}

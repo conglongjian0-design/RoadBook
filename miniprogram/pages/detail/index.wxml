@@ -1,0 +1,19 @@
+<view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="reload">重新加载</button></view>
+<view wx:if="{{route}}" class="with-footer">
+ <map class="map" latitude="{{center.latitude}}" longitude="{{center.longitude}}" scale="12" polyline="{{polylines}}" markers="{{markers}}" include-points="{{includePoints}}" enable-scroll enable-zoom show-scale></map>
+ <view class="page detail">
+  <view class="row between"><text class="tag">{{route.modeLabel}} · {{route.city||'未标注城市'}}</text><text class="small muted">{{route.visibility==='public'?'公开路书':'仅自己可见'}}</text></view>
+  <view class="title section">{{route.title}}</view><view class="subtitle">由 {{route.authorName}} 留下的路线</view>
+  <view class="notice warning" wx:if="{{route.isDemo}}">示例轨迹未经实地核验，仅用于体验功能。</view>
+  <view class="metrics"><view><view class="metric">{{route.distanceLabel}}<text>km</text></view><view class="muted">路线距离</view></view><view><view class="metric">{{elevationLabel}}<text wx:if="{{route.elevationGain!==null}}">m</text></view><view class="muted">累计上升 · 原始点估算</view></view><view><view class="metric">{{stopCount}}</view><view class="muted">标记地点</view></view></view>
+  <view class="divider"></view><view class="section-title">路线与标记点</view>
+  <view class="step" wx:for="{{stops}}" wx:key="index"><view class="step-num">{{index+1}}</view><view><view>{{item.name}}</view><view class="small muted">{{item.role}}</view></view></view>
+  <view class="divider"></view><view class="section-title">关于这条路</view><view class="description pre">{{route.description||'作者还没有留下说明。'}}</view>
+  <view class="notice">地图展示原路书；高德会重新规划导航路线，两者可能不同。</view>
+  <view class="row wrap"><button class="secondary grow" bindtap="exportFile" disabled="{{!exportReady}}">{{exportReady?'导出 GPX':'准备 GPX…'}}</button><button class="secondary grow" open-type="share" wx:if="{{canShare}}">分享路书</button></view>
+  <view class="small muted section" wx:if="{{isDemo}}">体验模式的路书只在本机保存，暂不支持跨用户分享。</view>
+  <view class="row section" wx:if="{{route.isOwner}}"><button class="ghost grow" bindtap="edit">编辑路书</button><button class="ghost grow" bindtap="remove">删除路书</button></view>
+ </view>
+ <view class="sticky"><button class="primary" bindtap="navigate">高德导航 ↗</button></view>
+</view>
+<view wx:if="{{loading&&!route}}" class="empty">正在展开这条路…</view>

@@ -1,0 +1,10 @@
+node_modules
+**/node_modules
+artifacts
+miniprogram/lib/core.js
+miniprogram/lib/fixtures.js
+cloudfunctions/roadbook/core.js
+preview/core.js
+preview/api.js
+preview/fixtures.js
+**/package-lock.json
