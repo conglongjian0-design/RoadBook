@@ -34,14 +34,14 @@ Page({
           id: 1,
           width: 22,
           height: 30,
-          label: { content: '起点', color: '#344d2c', bgColor: '#ffffff', padding: 5 },
+          label: { content: '起点', color: '#07110b', bgColor: '#1ed760', padding: 5 },
         },
         {
           ...core.wgsToGcj(end),
           id: 2,
           width: 22,
           height: 30,
-          label: { content: '终点', color: '#a16639', bgColor: '#ffffff', padding: 5 },
+          label: { content: '终点', color: '#07110b', bgColor: '#f5f7f5', padding: 5 },
         },
       ];
       const { segments, previewSegments, ...metadata } = r;
@@ -68,10 +68,10 @@ Page({
         center: core.wgsToGcj(start),
         polylines: fullMapped.map((points) => ({
           points,
-          color: '#537842',
-          width: 5,
-          borderColor: '#ffffff',
-          borderWidth: 2,
+          color: '#1ed760',
+          width: 6,
+          borderColor: '#0b130e',
+          borderWidth: 3,
         })),
         markers,
         includePoints: bounds,

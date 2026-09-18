@@ -1,1 +1,1 @@
-<view class="thumb"><canvas type="2d" id="routeCanvas" class="canvas"></canvas><view class="hint">路线示意</view></view>
+<view class="thumb"><canvas type="2d" id="routeCanvas" class="canvas"></canvas><view class="thumb-shade"></view><view class="hint"><text class="signal"></text> 路线预览</view></view>

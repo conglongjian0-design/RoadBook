@@ -1,16 +1,23 @@
-<view class="page">
- <view class="eyebrow">ROADBOOK · 把喜欢的路留下来</view>
- <view class="row between section"><view><view class="title"><view>下一程，</view><view>想去哪里？</view></view><view class="subtitle">发现一条路，出发一次。</view></view><button class="primary create" bindtap="create">＋<text>创建路书</text></button></view>
- <view class="notice" wx:if="{{isDemo}}">体验模式 · 示例路线仅供演示，创建内容保存在本机</view>
- <view class="search row"><text class="muted">⌕</text><input class="grow" placeholder="搜索路线名称或城市" value="keyword" bindinput="search" confirm-type="search" bindconfirm="refresh"/></view>
- <view class="chips"><view wx:for="{{modes}}" wx:key="value" class="pill {{mode===item.value?'active':''}}" data-mode="{{item.value}}" bindtap="filter">{{item.label}}</view></view>
- <view class="row between section"><view class="section-title">出发灵感</view><text class="muted small">每一条路，都值得分享</text></view>
- <view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="refresh">重新加载</button></view>
- <view class="route card" wx:for="{{routes}}" wx:key="_id" data-id="{{item._id}}" bindtap="open">
-  <route-thumb segments="{{item.segments}}"/><view class="pad"><view class="row between"><text class="tag">{{item.modeLabel}} · {{item.city||'未标注城市'}}</text><text class="small muted" wx:if="{{item.isDemo}}">示例</text></view><view class="route-name">{{item.title}}</view><view class="row between route-meta"><text>{{item.distanceLabel}} km · {{item.authorName}}</text><text>查看路线 ↗</text></view></view>
- </view>
- <view class="empty" wx:if="{{!loading&&!error&&!routes.length}}">这里还没有路书<view class="small">换个关键词，或分享你的第一条路线</view></view>
- <view class="empty small" wx:if="{{loading}}">正在寻找好路线…</view>
- <button wx:if="{{hasMore&&!loading}}" class="ghost" bindtap="loadMore">加载更多</button>
- <view class="footnote" wx:if="{{routes.length}}">走过的路，成为下一次出发的灵感。</view>
+<view class="page explore-page">
+  <view class="topbar">
+    <view><view class="eyebrow">ROADBOOK / EXPLORE</view><view class="title section">探索路书</view><view class="subtitle">规划下一段骑行旅程</view></view>
+    <button class="create" bindtap="create">＋</button>
+  </view>
+  <view class="notice" wx:if="{{isDemo}}">体验模式 · 示例路线仅供演示，创建内容保存在本机</view>
+  <view class="search row"><text class="search-icon">⌕</text><input class="grow" placeholder="搜索路线或城市" value="{{keyword}}" bindinput="search" confirm-type="search" bindconfirm="refresh"/><text class="search-tail">筛选</text></view>
+  <view class="chips"><view wx:for="{{modes}}" wx:key="value" class="pill {{mode===item.value?'active':''}}" data-mode="{{item.value}}" bindtap="filter">{{item.label}}</view></view>
+  <view class="row between section-heading"><view><view class="section-title">热门路书</view><view class="subtitle">来自骑行者的真实路线</view></view><text class="accent small">{{routes.length}} 条</text></view>
+  <view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="refresh">重新加载</button></view>
+  <view class="route card {{index===0?'featured':''}}" wx:for="{{routes}}" wx:key="_id" data-id="{{item._id}}" bindtap="open">
+    <view class="cover"><route-thumb segments="{{item.segments}}"/><view class="cover-badge" wx:if="{{index===0}}">本周精选</view></view>
+    <view class="pad">
+      <view class="row between"><text class="tag">{{item.modeLabel}} · {{item.city||'未标注城市'}}</text><text class="small muted" wx:if="{{item.isDemo}}">DEMO</text></view>
+      <view class="route-name">{{item.title}}</view>
+      <view class="route-stats"><view><text class="stat-value">{{item.distanceLabel}}</text><text class="stat-unit"> km</text><view class="stat-label">路线距离</view></view><view class="author"><text class="avatar-dot">骑</text><text>{{item.authorName}}</text></view><text class="arrow">↗</text></view>
+    </view>
+  </view>
+  <view class="empty" wx:if="{{!loading&&!error&&!routes.length}}">这里还没有路书<view class="small">换个关键词，或分享你的第一条路线</view></view>
+  <view class="empty small" wx:if="{{loading}}">正在寻找好路线…</view>
+  <button wx:if="{{hasMore&&!loading}}" class="secondary more" bindtap="loadMore">加载更多</button>
+  <view class="footnote" wx:if="{{routes.length}}">KEEP MOVING · KEEP EXPLORING</view>
 </view>

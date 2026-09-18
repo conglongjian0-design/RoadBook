@@ -1,6 +1,14 @@
 const api = require('../../services/api');
 Page({
-  data: { user: null, routes: [], loading: false, error: '', hasMore: false, isDemo: api.isDemo },
+  data: {
+    user: null,
+    routes: [],
+    loading: false,
+    error: '',
+    hasMore: false,
+    isDemo: api.isDemo,
+    stats: { routes: 0, public: 0, distance: '0' },
+  },
   onShow() {
     this.refresh();
   },
@@ -14,23 +22,35 @@ Page({
       const user = await api.call('session');
       this.setData({ user });
       if (!user) {
-        this.setData({ routes: [], hasMore: false });
+        this.setRoutes([], false);
         return;
       }
       const r = await api.call('list', { mine: true });
-      this.setData({ routes: r.items, hasMore: r.hasMore });
+      this.setRoutes(r.items, r.hasMore);
     } catch (e) {
       this.setData({ error: e.message });
     } finally {
       this.setData({ loading: false });
     }
   },
+  setRoutes(routes, hasMore) {
+    const total = routes.reduce((sum, item) => sum + (Number(item.distanceLabel) || 0), 0);
+    this.setData({
+      routes,
+      hasMore,
+      stats: {
+        routes: routes.length,
+        public: routes.filter((item) => item.visibility === 'public').length,
+        distance: total >= 100 ? String(Math.round(total)) : total.toFixed(1),
+      },
+    });
+  },
   async more() {
     if (this.data.loading) return;
     this.setData({ loading: true });
     try {
       const r = await api.call('list', { mine: true, offset: this.data.routes.length });
-      this.setData({ routes: this.data.routes.concat(r.items), hasMore: r.hasMore });
+      this.setRoutes(this.data.routes.concat(r.items), r.hasMore);
     } catch (e) {
       api.report(e);
     } finally {

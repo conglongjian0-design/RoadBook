@@ -1,8 +1,27 @@
-<view class="page"><view class="eyebrow">YOUR LITTLE ATLAS</view><view class="row section"><image wx:if="{{user.avatarUrl}}" class="avatar" src="{{user.avatarUrl}}"/><view wx:else class="avatar">路</view><view class="grow"><view class="section-title">{{user?user.nickname:'每段旅程，都值得留下'}}</view><view class="subtitle">{{user?'收藏生活里的好路线':'登录后，开始制作你的第一本路书'}}</view></view><button class="ghost" bindtap="profile">{{user?'编辑':'登录'}}</button></view>
- <view wx:if="{{isDemo}}" class="notice">体验模式 · 内容仅保存在本机，不会发布到公共云端</view>
- <button class="primary section" bindtap="create">＋ 创建一本路书</button>
- <view class="row between section"><view class="section-title">我创建的</view><text class="small muted">公开与私密，都在这里</text></view>
- <view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="refresh">重试</button></view>
- <view class="card mine-route" wx:for="{{routes}}" wx:key="_id" data-id="{{item._id}}" bindtap="open"><route-thumb segments="{{item.segments}}"/><view class="pad"><view class="row between"><text class="tag">{{item.modeLabel}}</text><text class="small muted">{{item.visibility==='public'?'公开':'仅自己可见'}}</text></view><view class="route-name">{{item.title}}</view><view class="route-meta">{{item.distanceLabel}} km · {{item.city||'未标注城市'}}</view></view></view>
- <view class="empty" wx:if="{{!routes.length&&!loading&&!error}}">还没有留下路线<view class="small">上传一份 GPX，或规划一次新的出发。</view></view><view class="empty" wx:if="{{loading}}">正在加载…</view><button class="ghost" wx:if="{{hasMore&&!loading}}" bindtap="more">加载更多</button>
+<view class="page mine-page">
+  <view class="eyebrow">MY ROADBOOK</view>
+  <view class="profile-card card section">
+    <view class="profile-row">
+      <image wx:if="{{user.avatarUrl}}" class="avatar" src="{{user.avatarUrl}}"/>
+      <view wx:else class="avatar">路</view>
+      <view class="grow"><view class="profile-name">{{user?user.nickname:'开始你的骑行档案'}}</view><view class="subtitle">{{user?'每一公里，都算数':'登录后保存和管理全部路书'}}</view></view>
+      <button class="profile-btn" bindtap="profile">{{user?'设置':'登录'}}</button>
+    </view>
+    <view class="level-line" wx:if="{{user}}"><text class="level">RIDER · LV.01</text><view class="level-track"><view style="width:36%"></view></view></view>
+  </view>
+  <view class="stats-card">
+    <view><text class="stat-number">{{stats.routes}}</text><text class="stat-label">路书</text></view>
+    <view><text class="stat-number">{{stats.public}}</text><text class="stat-label">公开</text></view>
+    <view><text class="stat-number">{{stats.distance}}</text><text class="stat-unit">km</text><text class="stat-label">总里程</text></view>
+  </view>
+  <view wx:if="{{isDemo}}" class="notice">体验模式 · 内容仅保存在本机，不会发布到公共云端</view>
+  <button class="primary create-route section" bindtap="create">＋ 创建新路书</button>
+  <view class="row between list-head"><view><view class="section-title">我的路书</view><view class="subtitle">公开与私密路线</view></view><text class="list-count">{{stats.routes}}</text></view>
+  <view class="error" wx:if="{{error}}">{{error}}<button class="ghost" bindtap="refresh">重试</button></view>
+  <view class="card mine-route" wx:for="{{routes}}" wx:key="_id" data-id="{{item._id}}" bindtap="open">
+    <route-thumb segments="{{item.segments}}"/>
+    <view class="pad"><view class="row between"><text class="tag">{{item.modeLabel}}</text><text class="small privacy">{{item.visibility==='public'?'公开':'仅自己可见'}}</text></view><view class="route-name">{{item.title}}</view><view class="route-footer"><text>{{item.distanceLabel}} km</text><text>{{item.city||'未标注城市'}}　↗</text></view></view>
+  </view>
+  <view class="empty" wx:if="{{!routes.length&&!loading&&!error}}">还没有留下路线<view class="small">上传一份 GPX，或规划一次新的出发。</view></view>
+  <view class="empty" wx:if="{{loading}}">正在加载…</view><button class="secondary more" wx:if="{{hasMore&&!loading}}" bindtap="more">加载更多</button>
 </view>

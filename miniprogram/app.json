@@ -1,7 +1,7 @@
 {
  "pages":["pages/explore/index","pages/detail/index","pages/editor/index","pages/mine/index","pages/profile/index","pages/navigate/index"],
- "window":{"navigationBarTitleText":"路书","navigationBarBackgroundColor":"#f7f8f2","navigationBarTextStyle":"black","backgroundColor":"#f7f8f2","backgroundTextStyle":"dark"},
- "tabBar":{"color":"#8a9080","selectedColor":"#334a2c","backgroundColor":"#ffffff","borderStyle":"white","list":[{"pagePath":"pages/explore/index","text":"发现路书"},{"pagePath":"pages/mine/index","text":"我的路书"}]},
+ "window":{"navigationBarTitleText":"路书","navigationBarBackgroundColor":"#121212","navigationBarTextStyle":"white","backgroundColor":"#121212","backgroundTextStyle":"light"},
+ "tabBar":{"color":"#788079","selectedColor":"#1ed760","backgroundColor":"#101411","borderStyle":"black","list":[{"pagePath":"pages/explore/index","text":"首页"},{"pagePath":"pages/mine/index","text":"我的"}]},
  "permission":{"scope.userLocation":{"desc":"用于在地图中选择路书的起点、途经点和终点"}},
  "requiredPrivateInfos":["chooseLocation"],
  "style":"v2",

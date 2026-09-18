@@ -1,1 +1,1 @@
-.stop{padding:20rpx 0;border-bottom:1rpx solid #edf0e7}.stop .ghost{padding:12rpx;font-size:30rpx}.title{font-size:44rpx}.label{margin-top:24rpx}
+.page{padding-top:46rpx}.title{font-size:50rpx}.card{margin-top:24rpx}.stop{position:relative;padding:20rpx 0;border-bottom:1rpx solid #252c27}.stop:last-child{border-bottom:0}.stop .ghost{min-width:52rpx;padding:0 10rpx;font-size:29rpx}.label{margin-top:28rpx}.chips{flex-wrap:nowrap}.section route-thumb{display:block;border:1rpx solid #2b342e;border-radius:24rpx;overflow:hidden}.sticky{background:rgba(9,12,10,.97)}
